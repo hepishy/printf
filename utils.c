@@ -100,11 +100,11 @@ long int convert_size_number(long int num, int size)
 
 {
 
-if (size == S_LONG)
+if (size_modifier == S_LONG)
 
 return (num);
 
-else if (size == S_SHORT)
+else if (size_modifier == S_SHORT)
 
 return ((short)num);
 
@@ -124,15 +124,15 @@ return ((int)num);
  * Return: Casted value of num
  */
 
-long int convert_size_unsgnd(unsigned long int num, int size)
+long int convert_size_unsgnd(unsigned long int num, int size_modifier)
 
 {
 
-if (size == S_LONG)
+if (size_modifier == S_LONG)
 
 return (num);
 
-else if (size == S_SHORT)
+else if (size_modifier == S_SHORT)
 
 return ((unsigned short)num);
 
@@ -141,3 +141,4 @@ return ((unsigned short)num);
 return ((unsigned int)num);
 
 }
+
