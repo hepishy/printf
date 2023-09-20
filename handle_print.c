@@ -3,16 +3,16 @@
  * handle_print - Prints an argument based on its type
  * @fmt: Formatted string in which to print the arguments.
  * @list: List of arguments to be printed.
- * @ind: ind.
+ * @ind: index.
  * @buffer: Buffer array to handle print.
  * @flags: Calculates active flags
  * @width: get width.
  * @precision: Precision specification
- * @size: Size specifier
+ * @size_modifier: Size specifier
  * Return: 1 or 2;
  */
 int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
-int flags, int width, int precision, int size)
+int flags, int width, int precision, int size_modifier)
 {
 int i, unknown_length = 0, printed_chars = -1;
 fmt_t fmt_types[] = {
@@ -24,7 +24,8 @@ fmt_t fmt_types[] = {
 };
 for (i = 0; fmt_types[i].fmt != '\0'; i++)
 if (fmt[*ind] == fmt_types[i].fmt)
-return (fmt_types[i].fn(list, buffer, flags, width, precision, size));
+return (fmt_types[i].fn(list, buffer,
+flags, width, precision, size_modifier));
 if (fmt_types[i].fmt == '\0')
 {
 if (fmt[*ind] == '\0')

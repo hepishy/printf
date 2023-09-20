@@ -4,27 +4,23 @@
 /**
  * handle_write_char - Prints a string
  * @c: char types.
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags.
- * @width: get width.
- * @precision: precision specifier
- * @size: Size specifier
+ * @buffer: Array to handle buffer print
+ * @flags: Calculates the active flags.
+ * @width: get the width.
+ * @precision: get the precision specifier
+ * @size: Get size specifier
  *
- * Return: Number of chars printed.
+ * Return: Number of chars printed to the stdout.
  */
 
 int handle_write_char(char c, char buffer[],
 int flags, int width, int precision, int size)
-{ /* char is stored at left and paddind at buffer's right */
-
+{
+/* paddind is stored at buffer's right and char at left*/
 int i = 0;
 char padding = ' ';
-
-
-
 UNUSED(precision);
 UNUSED(size);
-
 
 
 if (flags & F_ZERO)
@@ -54,11 +50,11 @@ return (write(1, &buffer[0], 1));
  * write_number - Prints a string
  * @is_negative: Lista of arguments
  * @ind: char types.
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: precision specifier
- * @size: Size specifier
+ * @buffer: Array to handle buffer print
+ * @flags: Calculates the active flags.
+ * @width: get the width.
+ * @precision: get the precision specifier
+ * @size: Get size specifier
  *
  * Return: Number of chars printed.
  */
@@ -81,7 +77,7 @@ extra_ch = '+';
 else if (flags & F_SPACE)
 extra_ch = ' ';
 return (write_num(ind, buffer, flags, width, precision,
-length, padd, extra_ch));
+length, padding, extra_ch));
 }
 
  /**
@@ -92,7 +88,7 @@ length, padd, extra_ch));
  * @width: width
  * @prec: Precision specifier
  * @length: Number length
- * @padd: Pading char
+ * @padding: Pading char
  * @extra_c: Extra char
  *
  * Return: Number of printed chars.
@@ -204,11 +200,11 @@ return (write(1, &buffer[ind], length));
  * @buffer: Arrays of chars
  * @ind: Index at which the number starts in the buffer
  * @length: Length of number
- * @width: Wwidth specifier
+ * @width: Width specifier
  * @flags: Flags specifier
- * @padd: Char representing the padding
+ * @padding: Char representing the padding
  * @extra_c: Char representing extra char
- * @padd_start: Index at which padding should start
+ * @padding_start: Index at which padding should start
  *
  * Return: Number of written chars.
  */
@@ -231,7 +227,7 @@ buffer[--ind] = extra_c;
 
 return (write(1, &buffer[ind], length) + write(1, &buffer[3], i - 3));
 }
-else if (!(flags & F_MINUS) && padding == ' ')/* extra char to left of buffer */
+else if (!(flags & F_MINUS) && padding == ' ')
 {
 buffer[--ind] = 'x';
 buffer[--ind] = '0';
